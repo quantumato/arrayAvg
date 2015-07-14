@@ -26,43 +26,17 @@ Halo::Halo(matrix<long int>& A, int r, int np, int nx, int ny)
 	//assume square grid for now
 
 	//calculate the ranks of the neighbors
-	//TODO: Rewrite this more efficiently.
-
-	totalSend=0;
-	if(rank%npx > 0) //check if not on left side
-	{
-		neighbors[numNeighbors] = rank-1;
-		numNeighbors++;
-		totalSend+=local_rows;
-	}
-	if(rank%npx<npx-1) //check not on right side
-	{
-		neighbors[numNeighbors] = rank+1;
-		numNeighbors++;
-		totalSend+=local_rows;
-	}
-	if(rank >= npx) //check if not on top
-	{
-		neighbors[numNeighbors] = rank-npx;
-		numNeighbors++;
-		totalSend+=local_cols;
-	}
-	if(rank+npx<(npx*npy)) //check not on bottom side
-	{
-		neighbors[numNeighbors] = rank+npx;
-		numNeighbors++;
-		totalSend+=local_cols;
-	}
-
+	//TODO: Rewrite this mor
+	totalSend = local_rows*4;
 	totalRecv = 0; //REDUNDANT see numNeighbors for function
 
-	elementsToSend = new long int[100];
-	elementsToRecv = new long int[100];
+	elementsToSend = new long int[totalSend];
+	elementsToRecv = new long int[totalSend];
 
 //*****************************************************
 //TEMPORARY DEBUG CODE
 //Initialize elementsToSend/elementsToRecv
-	for(int i=0; i<100; i++)
+	for(int i=0; i<totalSend; i++)
 	{
 		elementsToSend[i] = 0;
 		elementsToRecv[i] = 0;
@@ -229,7 +203,7 @@ void Halo::Halo_Init(matrix<long int>& A)
 		std::cout << '\n';*/
 	MPI_Neighbor_alltoall(elementsToSend, sendLength[0], MPI_LONG, elementsToRecv, recvLength[0], MPI_LONG, cart); 
 	std::cout << "rank: " << rank << " RECEIVING: ";
-	for(int i=0; i<100; i++)
+	for(int i=0; i<totalSend; i++)
 	std::cout << elementsToRecv[i] << " ";
 	std::cout << '\n';
 	int recvIndex = 0;
