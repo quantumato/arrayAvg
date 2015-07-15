@@ -51,7 +51,7 @@ Halo::Halo(matrix<long int>& A, int r, int np, int nx, int ny)
 	//TODO: improve this if structure if possible
 	//checking if rank is on edge of the square of ranks
 	int sendIndex = 0;
-	if(rank%npx!=0) //check if not on left edge
+	//if(rank%npx!=0) //check if not on left edge
 	{
 		for(int i=1; i<nix-1; i++, sendIndex++)
 		{
@@ -61,7 +61,7 @@ Halo::Halo(matrix<long int>& A, int r, int np, int nx, int ny)
 		recvLength[totalRecv]=local_rows;
 		totalRecv++;
 	}
-	if(rank%npx!=npx-1) //check if not on right edge
+	//if(rank%npx!=npx-1) //check if not on right edge
 	{
 		for(int i=1; i<niy-1; i++, sendIndex++)
 		{
@@ -71,7 +71,7 @@ Halo::Halo(matrix<long int>& A, int r, int np, int nx, int ny)
 		recvLength[totalRecv]=local_rows;
 		totalRecv++;
 	}
-	if(rank >= npx) //check if not on top edge
+	//if(rank >= npx) //check if not on top edge
 	{
 		for(int i=1; i<nix-1; i++, sendIndex++)
 		{
@@ -83,7 +83,7 @@ Halo::Halo(matrix<long int>& A, int r, int np, int nx, int ny)
 		recvLength[totalRecv]=local_cols;
 		totalRecv++;
 	}
-	if(rank< num_p-npx) //check if not on bottom edge
+	//if(rank< num_p-npx) //check if not on bottom edge
 	{
 		for(int i=1; i<niy-1; i++, sendIndex++)
 		{
@@ -202,12 +202,12 @@ void Halo::Halo_Init(matrix<long int>& A)
 		std::cout << elementsToRecv[i] << " ";
 		std::cout << '\n';*/
 	MPI_Neighbor_alltoall(elementsToSend, sendLength[0], MPI_LONG, elementsToRecv, recvLength[0], MPI_LONG, cart); 
-	std::cout << "rank: " << rank << " RECEIVING: ";
+	/*std::cout << "rank: " << rank << " RECEIVING: ";
 	for(int i=0; i<totalSend; i++)
 	std::cout << elementsToRecv[i] << " ";
-	std::cout << '\n';
+	std::cout << '\n';*/
 	int recvIndex = 0;
-	if(rank >= npx) //check if on top edge
+	//if(rank >= npx) //check if on top edge
 	{
 		for(int i=1; i<nix-1; i++, recvIndex++)
 		{
@@ -218,7 +218,7 @@ void Halo::Halo_Init(matrix<long int>& A)
 		//totalSend scales with number of processes
 	}
 
-	if(rank%npx!=0) //check if on left edge
+	//if(rank%npx!=0) //check if on left edge
 	{
 		for(int i=1; i<nix-1; i++, recvIndex++)
 		{
@@ -227,7 +227,7 @@ void Halo::Halo_Init(matrix<long int>& A)
 		}			
 	}
 
-	if(rank< num_p-npx) //check if on bottom edge
+	//if(rank< num_p-npx) //check if on bottom edge
 	{
 		for(int i=1; i<niy-1; i++, recvIndex++)
 		{
@@ -236,7 +236,7 @@ void Halo::Halo_Init(matrix<long int>& A)
 		}
 	}
 
-	if(rank%npx!=npx-1) //check if on right edge
+	//if(rank%npx!=npx-1) //check if on right edge
 	{
 		for(int i=1; i<niy-1; i++, recvIndex++)
 		{

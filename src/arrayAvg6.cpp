@@ -116,8 +116,8 @@ int main(int argc, char* argv[])
 	if(rank != 0)
 		MPI_Irecv(&the_answer, 1, MPI_INT, rank-1, 42, MPI_COMM_WORLD, &request);
 
-	//std::cout << "rank: " << rank << " is printing\n";
-	//printarray(a);
+	std::cout << "rank: " << rank << " is printing\n";
+	printarray(a);
 	if(rank != 0)
 		MPI_Wait(&request, &status);
 	if(rank < size-1)
