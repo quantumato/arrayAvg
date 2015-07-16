@@ -11,12 +11,7 @@ Halo::Halo(matrix<long int>& A, int r, int np, int nx, int ny)
 	niy = ny; 
 	npx = sqrt(np);//number of processors in x and y directions. Processors will be a square number
 	npy = sqrt(np);
-	//neighbors[4]; //preinitialized to 4 elements TODO: make it dynamically allocated
-	//numNeighbors; //number of neighbors
 	tag = 42;
-
-	//std::cout << "npx=" << npx << std::endl;
-	//std::cout << "npy=" << npy << std::endl;
 
 	local_rows = ny-2;
 	local_cols = nx-2;
@@ -47,7 +42,7 @@ Halo::Halo(matrix<long int>& A, int r, int np, int nx, int ny)
 		numNeighbors++;
 		totalSend+=local_cols;
 	}
-	if(rank%npx<npx-1) //check not on right side
+	if(rank%npx!=npx-1) //check not on right side
 	{
 		neighbors[numNeighbors] = rank+1;
 		numNeighbors++;
@@ -109,19 +104,6 @@ Halo::Halo(matrix<long int>& A, int r, int np, int nx, int ny)
 		recvLength[totalRecv]=local_rows;
 		totalRecv++;
 	}
-	//std::cout << "totalRecv: " << totalRecv << "\n";
-	//for(int i = 0; i < totalRecv; i++)
-		//std::cout << recvLength[i] << " ";
-	//std::cout << '\n';
-
-	/*for(int i=0; i<totalSend; i++)
-		std::cout << elementsToSend[i] << " ";
-	std::cout << std::endl;*/
-
-	//std::cout << "calculated elements to Send\n";
-	//TODO: move these somewhere more relevant
-
-	//receive buffer
 }
 
 //
@@ -138,21 +120,7 @@ void Halo::Halo_Init(matrix<long int>& A)
 	requests = new MPI_Request[totalRecv];
 	status = new MPI_Status[totalRecv];
 
-
-
-	long int * n = elementsToRecv;
-	//std::cout << "rank: " << rank << " ";
-	//for(int i=0; i < totalRecv; i++)
-		//std::cout << neighbors[i] << " ";
-	//std::cout << '\n';
-	
-/*	std::cout << "totalRecv: " << totalRecv << '\n';
-	std::cout << "RecvList: ";
-	for(int i=0; i<totalSend; i++)
-	{
-		std::cout << elementsToRecv[i] << " ";
-	}
-	std::cout << std::endl;*/
+	long int * n = (long int *) elementsToRecv;
 
 	for(int i=0; i<totalRecv; i++)
 	{
@@ -168,29 +136,9 @@ void Halo::Halo_Init(matrix<long int>& A)
 		int n_send = sendLength[i];
 		MPI_Send(m, n_send, MPI_LONG, neighbors[i], tag, MPI_COMM_WORLD);
 		m+=n_send;
-		std::cout << "SENDING: ";
-		for(int i=0; i<totalSend; i++)
-			std::cout << *(m+i) << " ";
-		std::cout << std::endl;
 	}
-	for(int i=0; i<totalRecv; i++)
-	{
-		MPI_Wait(requests+i, status);
-		std::cout << "RECEIVING: ";
-		for(int i=0; i<totalSend; i++)
-			std::cout << elementsToRecv[i] << " ";
-		std::cout << " neighbor: " << neighbors[i];
-		std::cout << '\n';
-		/*if(rank == 0)
-		{
-			std::cout << "wait from " << neighbors[i] << " complete.\n";
-		}*/
-	}	
-	/*std::cout << "rank: " << rank << " Elements sent: ";
-	for(int i=0; i<totalSend; i++)
-		std::cout << elementsToSend[i] << " ";
-	std::cout << std::endl;*/
-		//MPI_Waitall(totalRecv, requests, status);
+	MPI_Waitall(totalRecv, requests, status);
+	
 	//move received elements to array
 	int recvIndex = 0;
 	if(rank >= npx) //check if on top edge
@@ -199,7 +147,6 @@ void Halo::Halo_Init(matrix<long int>& A)
 		{
 			//send buffer
 			A[0][i] = elementsToRecv[recvIndex];
-			//A[0][i] = 96;
 		}		
 		//totalSend scales with number of processes
 	}
@@ -209,7 +156,6 @@ void Halo::Halo_Init(matrix<long int>& A)
 		for(int i=1; i<nix-1; i++, recvIndex++)
 		{
 			A[i][0] = elementsToRecv[recvIndex];
-			//A[i][0] = 69;
 		}			
 	}
 
@@ -218,7 +164,6 @@ void Halo::Halo_Init(matrix<long int>& A)
 		for(int i=1; i<niy-1; i++, recvIndex++)
 		{
 			A[local_rows+1][i] = elementsToRecv[recvIndex];
-			//A[local_rows+1][i] = 42;
 		}
 	}
 
@@ -227,7 +172,6 @@ void Halo::Halo_Init(matrix<long int>& A)
 		for(int i=1; i<niy-1; i++, recvIndex++)
 		{
 			A[i][local_cols+1] = elementsToRecv[recvIndex];
-			//A[i][local_rows+1] = 21;
 		}
 	}
 	delete [] status;

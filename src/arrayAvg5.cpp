@@ -13,6 +13,7 @@
 #include <stdlib.h>
 #include "matrix.h"
 #include "Halo5.hpp"
+#include <vector>
 
 void initialize_matrix(matrix<long int>& A);
 void average_local(matrix<long int>& arr1, matrix<long int>& arr2);
@@ -24,11 +25,11 @@ int main(int argc, char* argv[])
 {
 	MPI_Init(&argc, &argv);
 #ifndef NOTIME
-	double start = MPI_Wtime();
+	std::vector<double> timer;
+	double start, finish, diff;
 #endif
 	int lnx, lny; //local number of rows in x and y dimensions
 	//NOTE: We are assuming a processor number that is a power of 4
-	int gnx = 100, gny = 100; //global number of rows in x and y dimensions
 
 	int rank, size;	
 	MPI_Comm_size(MPI_COMM_WORLD, &size);
@@ -36,8 +37,16 @@ int main(int argc, char* argv[])
 
 	//this is highly dependent on the size of the matrix and the number of processses.
 	//I could write this to be more generic but for the purposes of this experiment I'm leaving it like this
-	lnx = gnx/sqrt(size) + 2;
-	lny = gny/sqrt(size) + 2;
+	if(argc == 3)
+	{
+		lnx = atoi(argv[1]);
+		lny = atoi(argv[2]);
+	}
+	else
+	{
+		lnx = 102;
+		lny = 102;
+	}
 
 	//matrices to hold values
 	matrix<long int> a;
@@ -51,62 +60,83 @@ int main(int argc, char* argv[])
 	//initialize Halo
 	Halo setupHalo(a, rank, size, lnx, lny);
 
-	for(int i=0; i<4; i++)
+	for(int i=0; i<10; i++)
 	{
 		if(i%2==0)
 		{
+			start = MPI_Wtime();
 			setupHalo.Halo_Init(a);
 			//average the local-dependent parts of array
 			average_local(a, b);	
 			setupHalo.Halo_Finalize(a);
+			finish = MPI_Wtime();
+			diff = finish-start;
+			timer.push_back(diff);
 			//average external-dependent parts of the array
 			average_external(a, b);
-			//setupHalo.assignArr(b);
 
 		}
 		else
 		{
 			//if(rank == 0)
 				//std::cout << "Starting B\n";
+			start = MPI_Wtime();
 			setupHalo.Halo_Init(b);
 			//average the local-depenedent parts of array
 			average_local(b, a);
 			setupHalo.Halo_Finalize(b);
-
+			finish = MPI_Wtime();
+			diff = finish-start;
+			
+			timer.push_back(diff);	
 			//setupHalo.Halo_Finalize();
 			//average the external-denpendednt parts of the array
 			average_external(b, a);
-			//setupHalo.assignArr(a);
 		}
 	}
 
 #ifndef NOTIME	
-		double finish = MPI_Wtime();
-		double time = finish-start;
+		double time;
+		double local_min, local_max;
+		local_min = timer[0];
+		local_max = local_min;
+
+		for(int i = 0; i < timer.size(); i++)
+		{
+		if(timer[i] < local_min)
+			local_min=timer[i];
+		if(timer[i] > local_max)
+			local_max=timer[i];
+			time+=timer[i];	
+		}
+		time/=timer.size();
 		double time_sum;
 		double time_max;
 		double time_min;
-		MPI_Allreduce(&time, &time_sum, 1, MPI_DOUBLE, MPI_SUM, MPI_COMM_WORLD);
-		MPI_Allreduce(&time, &time_min, 1, MPI_DOUBLE, MPI_MIN, MPI_COMM_WORLD);
-		MPI_Allreduce(&time, &time_max, 1, MPI_DOUBLE, MPI_MAX, MPI_COMM_WORLD);
+	  //double local_minx, local_maxx;
+		MPI_Reduce(&time, &time_sum, 1, MPI_DOUBLE, MPI_SUM, 0, MPI_COMM_WORLD);
+		MPI_Reduce(&time, &time_min, 1, MPI_DOUBLE, MPI_MIN, 0, MPI_COMM_WORLD);
+		MPI_Reduce(&time, &time_max, 1, MPI_DOUBLE, MPI_MAX, 0, MPI_COMM_WORLD);
+	//MPI_Reduce(&local_min, &local_minx, 1, MPI_DOUBLE, MPI_MIN, MPI_COMM_WORLD);
+	//MPI_Reduce(&local_max, &local_maxx, 1, MPI_DOUBLE, MPI_MAX, MPI_COMM_WORLD);
 		if(rank == 0)
 		{
 			std::cout << "average= " << time_sum/size << std::endl;
 			std::cout << "max= " << time_max << std::endl;
 			std::cout << "min= " << time_min << std::endl;
+		//std::cout << "min= " << local_minx << std::endl;
+		//std::cout << "max= " << local_maxx << std::endl;
 		}
-#endif
 
+#endif
+	//MPI calls to make sure the output lines up to some degree
 	int the_answer = 42;
 	MPI_Status status;
-	MPI_Request request;
 	if(rank != 0)
-		MPI_Irecv(&the_answer, 1, MPI_INT, rank-1, 42, MPI_COMM_WORLD, &request);
+		MPI_Recv(&the_answer, 1, MPI_INT, rank-1, 42, MPI_COMM_WORLD, &status);
 
 	//std::cout << "rank: " << rank << " is printing\n";
 	//printarray(a);
-	if(rank != 0)
-		MPI_Wait(&request, &status);
 	if(rank < size-1)
 		MPI_Send(&the_answer, 1, MPI_INT, rank+1, 42, MPI_COMM_WORLD);
 
@@ -130,8 +160,8 @@ void initialize_matrix(matrix<long int>& A)
 {
 	int nx = A.get_nrows();
 	int ny = A.get_ncols();
-	for(int i=1; i<nx-1; i++)
-		for(int j = 1; j<ny-1; j++)
+	for(int i=0; i<nx; i++)
+		for(int j = 0; j<ny; j++)
 			A[i][j] = rand()%10;
 }
 
