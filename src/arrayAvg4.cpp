@@ -104,7 +104,8 @@ int main(int argc, char* argv[])
 	time/=timer.size();
 	double time_sum;
 	double time_max;
-	double time_min, local_minx, local_maxx;
+	double time_min;
+	//double	local_minx, local_maxx;
 	MPI_Reduce(&time, &time_sum, 1, MPI_DOUBLE, MPI_SUM, 0, MPI_COMM_WORLD);
 	MPI_Reduce(&time, &time_min, 1, MPI_DOUBLE, MPI_MIN, 0, MPI_COMM_WORLD);
 	MPI_Reduce(&time, &time_max, 1, MPI_DOUBLE, MPI_MAX, 0, MPI_COMM_WORLD);
@@ -125,7 +126,7 @@ int main(int argc, char* argv[])
 	//MPI_transmission only for the purpose of lining up the output	
 	int the_answer = 42;
 	MPI_Status status;
-	MPI_Request request;
+	//MPI_Request request;
 	if(rank != 0)
 		MPI_Recv(&the_answer, 1, MPI_INT, rank-1, 42, MPI_COMM_WORLD, &status);
 
