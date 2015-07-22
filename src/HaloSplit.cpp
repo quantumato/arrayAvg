@@ -1,22 +1,10 @@
-#include "Halo5.hpp"
+#include "HaloSplit.hpp"
 #include<mpi.h>
 #include<cmath>
 #include<iostream>
 
-Halo::Halo(matrix<long int>& A, int r, int np, int nx, int ny)
+HaloSplit::HaloSplit(matrix<long int>& A, int r, int np, int nx, int ny)
 {
-	rank = r; //process ID
-	num_p = np; //number of processes
-	nix = nx;
-	niy = ny; 
-	npx = sqrt(np);//number of processors in x and y directions. Processors will be a square number
-	npy = sqrt(np);
-	tag = 42;
-
-	local_rows = ny-2;
-	local_cols = nx-2;
-	//NOTE: only holds coordinates that change. (i,0), (i,n-1), (0,i), (n-1, i)
-	numNeighbors = 0;
 	//calculate the rank of the processor in the processor grid 
 	//assume square grid for now
 
@@ -24,6 +12,7 @@ Halo::Halo(matrix<long int>& A, int r, int np, int nx, int ny)
 	//TODO: Rewrite this more efficiently.
 
 	totalSend=0;
+	numNeighbors = 0;
 	if(rank >= npx) //check if not on top
 	{
 		neighbors[numNeighbors] = rank-npx;
@@ -48,7 +37,7 @@ Halo::Halo(matrix<long int>& A, int r, int np, int nx, int ny)
 		numNeighbors++;
 		totalSend+=local_rows;
 	}
-	totalRecv = 0; //REDUNDANT see numNeighbors for function
+	numNeighbors = 0;
 
 	elementsToSend = new long int[totalSend];
 	elementsToRecv = new long int[totalSend];
@@ -59,6 +48,9 @@ Halo::Halo(matrix<long int>& A, int r, int np, int nx, int ny)
 	//TODO: improve this if structure if possible
 	//checking if rank is on edge of the square of ranks
 	int sendIndex = 0;
+
+	//old method of copying data to buffer and sending buffer
+	/*int recvIndex = 0;
 	if(rank >= npx) //check if not on top edge
 	{
 		for(int i=1; i<nix-1; i++, sendIndex++)
@@ -67,9 +59,9 @@ Halo::Halo(matrix<long int>& A, int r, int np, int nx, int ny)
 			elementsToSend[sendIndex] = A[1][i];
 		}		
 		//totalSend scales with number of processes
-		sendLength[totalRecv]=local_cols;
-		recvLength[totalRecv]=local_cols;
-		totalRecv++;
+		sendLength[recvIndex]=local_cols;
+		recvLength[recvIndex]=local_cols;
+		recvIndex++;
 	}
 
 	if(rank%npx!=0) //check if not on left edge
@@ -78,9 +70,9 @@ Halo::Halo(matrix<long int>& A, int r, int np, int nx, int ny)
 		{
 			elementsToSend[sendIndex] = A[i][1];
 		}			
-		sendLength[totalRecv]=local_rows;
-		recvLength[totalRecv]=local_rows;
-		totalRecv++;
+		sendLength[recvIndex]=local_rows;
+		recvLength[recvIndex]=local_rows;
+		recvIndex++;
 	}
 
 	if(rank< num_p-npx) //check if not on bottom edge
@@ -89,9 +81,9 @@ Halo::Halo(matrix<long int>& A, int r, int np, int nx, int ny)
 		{
 			elementsToSend[sendIndex] = A[local_rows][i];
 		}
-		sendLength[totalRecv]=local_cols;
-		recvLength[totalRecv]=local_cols;
-		totalRecv++;
+		sendLength[recvIndex]=local_cols;
+		recvLength[recvIndex]=local_cols;
+		recvIndex++;
 	}
 
 	if(rank%npx!=npx-1) //check if not on right edge
@@ -100,10 +92,10 @@ Halo::Halo(matrix<long int>& A, int r, int np, int nx, int ny)
 		{
 			elementsToSend[sendIndex] = A[i][local_rows];
 		}
-		sendLength[totalRecv]=local_rows;
-		recvLength[totalRecv]=local_rows;
-		totalRecv++;
-	}
+		sendLength[recvIndex]=local_rows;
+		recvLength[recvIndex]=local_rows;
+		recvIndex++;
+	}*/
 }
 
 //
@@ -112,38 +104,37 @@ Halo::Halo(matrix<long int>& A, int r, int np, int nx, int ny)
 //
 //
 
-void Halo::Halo_Init(matrix<long int>& A)
+bool HaloSplit::Halo_Init(matrix<long int>& A)
 {
 	//post Irecv	
 
-	//TODO: replace totalRecv with numNeighbors
-	requests = new MPI_Request[2*totalRecv];
-	status = new MPI_Status[2*totalRecv];
+	//TODO: replace numNeighbors with totalRecv
+	requests = new MPI_Request[2*numNeighbors];
+	status = new MPI_Status[2*numNeighbors];
 
-	long int * n = elementsToRecv;
-
-	for(int i=0; i<totalRecv; i++)
+	for(int i=0; i<numNeighbors; i++)
 	{
 		int n_recv = recvLength[i];
-		MPI_Irecv(n, n_recv, MPI_LONG, neighbors[i], tag, MPI_COMM_WORLD, requests+i); 
+		MPI_Irecv(A.edge(i), n_recv, MPI_LONG, neighbors[i], tag, MPI_COMM_WORLD, requests+i); 
 		n+=n_recv;
 	}
 	//Sends
 	long int * m = (long int *) elementsToSend;
-	for(int i=0; i<totalRecv; i++)
+	for(int i=0; i<numNeighbors; i++)
 	{
 		int n_send = sendLength[i];
-		MPI_Isend(m, n_send, MPI_LONG, neighbors[i], tag, MPI_COMM_WORLD, requests+i+totalRecv);
+		MPI_Isend(A.edge(i), n_send, MPI_LONG, neighbors[i], tag, MPI_COMM_WORLD, requests+i+numNeighbors);
 		m+=n_send;
 	}
+	return true;
 }
 
 //separate wait function
-void Halo::Halo_Finalize(matrix<long int>& A)
+void HaloSplit::Halo_Finalize(matrix<long int>& A)
 {
-	MPI_Waitall(totalRecv, requests, status);
+	MPI_Waitall(numNeighbors, requests, status);
 	//move received elements to array
-	int recvIndex = 0;
+	/*int recvIndex = 0;
 	if(rank >= npx) //check if on top edge
 	{
 		for(int i=1; i<nix-1; i++, recvIndex++)
@@ -176,15 +167,9 @@ void Halo::Halo_Finalize(matrix<long int>& A)
 		{
 			A[i][local_cols+1] = elementsToRecv[recvIndex];
 		}
-	}
+	}*/
 	delete [] status;
 	delete [] requests;
-}
-
-Halo::~Halo()
-{
-	delete [] elementsToSend;
-	delete [] elementsToRecv;
 }
 
 /*void Halo::assignArr(matrix<long int>& nA)

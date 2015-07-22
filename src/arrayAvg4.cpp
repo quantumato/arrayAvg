@@ -62,7 +62,7 @@ int main(int argc, char* argv[])
 	//initialize Halo
 	Halo setupHalo(a, rank, size, lnx, lny);
 	
-	for(int i=0; i<2; i++)
+	for(int i=0; i<10; i++)
 	{
 		if(i%2==0)
 		{

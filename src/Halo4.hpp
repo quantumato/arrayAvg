@@ -11,6 +11,7 @@
 #include <mpi.h>
 #include "matrix.h"
 
+//universal Halo class
 class Halo
 {
 	private:
@@ -20,14 +21,16 @@ class Halo
 		int npx, npy; //number of processors in x and y directions
 		int nix, niy; //number of elements in x and y directions
 		int tag;
-		long int * elementsToSend; //holds the indices of the elements to be sent
+		//long int * elementsToSend; //holds the indices of the elements to be sent
 													//NOTE: only holds coordinates that change. (i,0), (i,n-1), (0,i), (n-1, i)
-		long int * elementsToRecv; //NOTE: only holds coordinates that change. (i,0), (i,n-1), (0,i), (n-1, i)
+		//long int * elementsToRecv; //NOTE: only holds coordinates that change. (i,0), (i,n-1), (0,i), (n-1, i)
 		int local_rows = npx-2;
 		int local_cols = npy-2;
+		//merged version requires this
 		int neighbors[4]; //preinitialized to 4 elements TODO: make it dynamically allocated
 		int sendLength[4];
 		int recvLength[4];
+		//merged version requires this
 		int numNeighbors; //number of neighbors
 		int totalSend;
 		int totalRecv;
@@ -37,9 +40,8 @@ class Halo
 		Halo(matrix<long int>& nA, int r, int np, int nx, int ny);
 		~Halo();
 
-		void Halo_Init(matrix<long int>& A);
-		//void Halo_Finalize();
-		//void assignArr(matrix<long int>& nA);
+		bool Halo_Init(matrix<long int>& A);
+		bool Halo_Finalize();
 };
 #endif
 

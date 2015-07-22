@@ -5,223 +5,223 @@ number of processes: 9
 
 args: 10
 
-average= 0.0246518
-min average= 3.6478e-05
-max average= 0.0524865
-average= 0.0230432
-min average= 6.90222e-05
-max average= 0.045774
-average= 0.0223323
-min average= 4.11272e-05
-max average= 0.0535716
-average= 0.0222778
-min average= 6.13928e-05
-max average= 0.0446534
-average= 0.0238561
-min average= 7.9155e-05
-max average= 0.0534185
+average= 0.000400231
+min average= 2.74658e-05
+max average= 0.00224581
+average= 0.000224479
+min average= 2.14815e-05
+max average= 0.000428295
+average= 0.000160787
+min average= 2.67267e-05
+max average= 0.000314116
+average= 0.000128656
+min average= 1.95026e-05
+max average= 0.000245333
+average= 0.000181712
+min average= 3.06606e-05
+max average= 0.000360322
 
 args: 50
 
-average= 0.025375
-min average= 0.000160933
-max average= 0.0570426
-average= 0.0259196
-min average= 0.00030899
-max average= 0.0603449
-average= 0.0228686
-min average= 0.000221014
-max average= 0.0396655
-average= 0.0268988
-min average= 0.000304461
-max average= 0.0575165
-average= 0.0236078
-min average= 0.000119567
-max average= 0.0489099
+average= 0.000888181
+min average= 0.000195694
+max average= 0.00184019
+average= 0.000312967
+min average= 0.000169802
+max average= 0.000516415
+average= 0.000320421
+min average= 0.000189567
+max average= 0.000472617
+average= 0.000329844
+min average= 0.000199628
+max average= 0.00046649
+average= 0.000326647
+min average= 0.000191808
+max average= 0.00048821
 
 args: 100
 
-average= 0.0257608
-min average= 0.000686049
-max average= 0.0589029
-average= 0.0251085
-min average= 0.000358462
-max average= 0.0569915
-average= 0.0272873
-min average= 0.000351071
-max average= 0.0592749
-average= 0.0240727
-min average= 0.0006845
-max average= 0.0473881
-average= 0.0252247
-min average= 0.000337481
-max average= 0.0564595
+average= 0.000846852
+min average= 0.000652885
+max average= 0.00100281
+average= 0.000799123
+min average= 0.000642991
+max average= 0.000980735
+average= 0.000706214
+min average= 0.000512576
+max average= 0.000912023
+average= 0.000825405
+min average= 0.000624108
+max average= 0.000985479
+average= 0.000701475
+min average= 0.000614524
+max average= 0.000817323
 
 args: 1000
 
-average= 0.0555519
-min average= 0.030376
-max average= 0.094172
-average= 0.0569873
-min average= 0.030148
-max average= 0.0878735
-average= 0.0592143
-min average= 0.030342
-max average= 0.090364
-average= 0.058027
-min average= 0.0302795
-max average= 0.0880475
-average= 0.0605813
-min average= 0.0317611
-max average= 0.0878295
+average= 0.0324241
+min average= 0.0318251
+max average= 0.0330867
+average= 0.0325853
+min average= 0.0316844
+max average= 0.0334646
+average= 0.0326178
+min average= 0.0317106
+max average= 0.0335859
+average= 0.0294676
+min average= 0.0288941
+max average= 0.0296656
+average= 0.0326243
+min average= 0.0318417
+max average= 0.0329696
 number of processes: 25
 
 
 args: 10
 
-average= 0.08045
-min average= 2.64645e-05
-max average= 0.18921
-average= 0.064297
-min average= 4.60148e-05
-max average= 0.171948
-average= 0.06491
-min average= 7.51019e-05
-max average= 0.137264
-average= 0.06379
-min average= 3.61204e-05
-max average= 0.164431
-average= 0.0655312
-min average= 0.000154018
-max average= 0.150432
+average= 0.000422116
+min average= 2.39849e-05
+max average= 0.000909686
+average= 6.65894e-05
+min average= 2.44617e-05
+max average= 0.000132895
+average= 7.94821e-05
+min average= 3.06129e-05
+max average= 0.000147915
+average= 6.49395e-05
+min average= 2.19822e-05
+max average= 0.000134802
+average= 7.04527e-05
+min average= 2.61068e-05
+max average= 0.000126004
 
 args: 50
 
-average= 0.0842694
-min average= 0.000164509
-max average= 0.179078
-average= 0.0855971
-min average= 0.000128031
-max average= 0.170555
-average= 0.0779696
-min average= 0.000152946
-max average= 0.179692
-average= 0.0645138
-min average= 0.000154495
-max average= 0.134196
-average= 0.0730179
-min average= 0.00017333
-max average= 0.180358
+average= 0.000186482
+min average= 0.000118995
+max average= 0.000261307
+average= 0.000240757
+min average= 0.000182772
+max average= 0.000339198
+average= 0.000229386
+min average= 0.000168395
+max average= 0.000307798
+average= 0.000177508
+min average= 0.000135279
+max average= 0.000245452
+average= 0.000228117
+min average= 0.000181532
+max average= 0.000294018
 
 args: 100
 
-average= 0.0684662
-min average= 0.000417352
-max average= 0.149048
-average= 0.0625204
-min average= 0.000399351
-max average= 0.155337
-average= 0.00202568
-min average= 0.000563502
-max average= 0.00393307
-average= 0.001846
-min average= 0.000619531
-max average= 0.00511456
-average= 0.00207903
-min average= 0.000585914
-max average= 0.00509608
+average= 0.00073114
+min average= 0.000660658
+max average= 0.00082252
+average= 0.000593502
+min average= 0.000508499
+max average= 0.000683475
+average= 0.000670367
+min average= 0.000556803
+max average= 0.000733399
+average= 0.000715165
+min average= 0.000637364
+max average= 0.000791311
+average= 0.000661685
+min average= 0.000536704
+max average= 0.000790691
 
 args: 1000
 
-average= 0.0412674
-min average= 0.036225
-max average= 0.04725
-average= 0.0430277
-min average= 0.0384834
-max average= 0.0476969
-average= 0.0411859
-min average= 0.033829
-max average= 0.0482451
-average= 0.0433442
-min average= 0.037372
-max average= 0.0496085
-average= 0.0434533
-min average= 0.0365045
-max average= 0.0495285
+average= 0.0424096
+min average= 0.0410951
+max average= 0.0435031
+average= 0.0419864
+min average= 0.0409756
+max average= 0.0433079
+average= 0.0337336
+min average= 0.0333727
+max average= 0.0341104
+average= 0.0339824
+min average= 0.0336832
+max average= 0.0343198
+average= 0.0375159
+min average= 0.0365288
+max average= 0.0379941
 number of processes: 64
 
 
 args: 10
 
-average= 0.00571401
-min average= 3.56436e-05
-max average= 0.0202105
-average= 0.0400384
-min average= 3.5882e-05
-max average= 0.120579
-average= 0.00669683
-min average= 3.74317e-05
-max average= 0.0180714
-average= 0.00380933
-min average= 2.58684e-05
-max average= 0.0113971
-average= 0.0061838
-min average= 3.75509e-05
-max average= 0.0185921
+average= 0.0019489
+min average= 0.00113089
+max average= 0.003143
+average= 0.00101158
+min average= 0.000387573
+max average= 0.00168302
+average= 0.00210981
+min average= 4.63247e-05
+max average= 0.00312848
+average= 0.00157518
+min average= 0.000461698
+max average= 0.00214221
+average= 0.00156563
+min average= 0.00115881
+max average= 0.00267801
 
 args: 50
 
-average= 0.0054252
-min average= 0.000165462
-max average= 0.014217
-average= 0.0050054
-min average= 0.000192523
-max average= 0.0169245
-average= 0.00426021
-min average= 0.000144601
-max average= 0.0180275
-average= 0.00712847
-min average= 0.000169516
-max average= 0.0314546
-average= 0.00493943
-min average= 0.00016284
-max average= 0.0160165
+average= 0.00119424
+min average= 0.000461531
+max average= 0.0017695
+average= 0.0011347
+min average= 0.000560474
+max average= 0.00150261
+average= 0.000462151
+min average= 0.000183988
+max average= 0.000910878
+average= 0.00154066
+min average= 0.00122216
+max average= 0.00218327
+average= 0.00133141
+min average= 0.000131917
+max average= 0.0024179
 
 args: 100
 
-average= 0.00524363
-min average= 0.0007056
-max average= 0.029505
-average= 0.00412787
-min average= 0.000461578
-max average= 0.0140135
-average= 0.0103867
-min average= 0.000449061
-max average= 0.0282309
-average= 0.0082966
-min average= 0.000442624
-max average= 0.0346061
-average= 0.00408889
-min average= 0.000455499
-max average= 0.0129516
+average= 0.000802571
+min average= 0.000535536
+max average= 0.00106986
+average= 0.000800596
+min average= 0.000445414
+max average= 0.00101755
+average= 0.00300598
+min average= 0.00167298
+max average= 0.00353956
+average= 0.00245499
+min average= 0.00160151
+max average= 0.0029361
+average= 0.00146119
+min average= 0.000585341
+max average= 0.00235281
 
 args: 1000
 
-average= 0.0530258
-min average= 0.0431055
-max average= 0.0642935
-average= 0.0507029
-min average= 0.0440036
-max average= 0.058652
-average= 0.0497157
-min average= 0.043999
-max average= 0.074315
-average= 0.0521699
-min average= 0.0439845
-max average= 0.0699991
-average= 0.0492299
-min average= 0.0436876
-max average= 0.0704401
+average= 0.0461974
+min average= 0.0443219
+max average= 0.0470868
+average= 0.047602
+min average= 0.0448258
+max average= 0.0478911
+average= 0.0475692
+min average= 0.0446661
+max average= 0.0483108
+average= 0.0453147
+min average= 0.0442411
+max average= 0.0456572
+average= 0.0456846
+min average= 0.0449963
+max average= 0.0460999
 
 starting arrayAvg5
 
@@ -230,223 +230,223 @@ number of processes: 9
 
 args: 10
 
-average= 0.000157939
-max= 0.000298095
-min= 2.48671e-05
-average= 0.000277268
-max= 0.000421143
-min= 2.72274e-05
-average= 0.000166188
-max= 0.000278711
-min= 1.98364e-05
-average= 0.000175635
-max= 0.000318217
-min= 2.82764e-05
-average= 0.000169969
-max= 0.000311017
-min= 2.00748e-05
+average= 5.38349e-05
+max= 7.33852e-05
+min= 1.91927e-05
+average= 3.77231e-05
+max= 5.21421e-05
+min= 1.97411e-05
+average= 6.42088e-05
+max= 8.4734e-05
+min= 2.66314e-05
+average= 4.24544e-05
+max= 7.80106e-05
+min= 2.18153e-05
+average= 5.94563e-05
+max= 8.27789e-05
+min= 1.76907e-05
 
 args: 50
 
-average= 0.000314283
-max= 0.000447488
-min= 0.000178194
-average= 0.000303602
-max= 0.000449514
-min= 0.000167322
-average= 0.000260038
-max= 0.000414991
-min= 0.000133085
-average= 0.000338215
-max= 0.000488329
-min= 0.000192308
-average= 0.000301353
-max= 0.000431108
-min= 0.000177717
+average= 0.000198706
+max= 0.000233746
+min= 0.000169897
+average= 0.000199755
+max= 0.000238919
+min= 0.000171566
+average= 0.000191545
+max= 0.000227189
+min= 0.000169659
+average= 0.000184393
+max= 0.000219178
+min= 0.000145578
+average= 0.000206635
+max= 0.000254583
+min= 0.000185084
 
 args: 100
 
-average= 0.00073888
-max= 0.0008641
-min= 0.000596356
-average= 0.000701812
-max= 0.000811291
-min= 0.000578904
-average= 0.000738488
-max= 0.000883722
-min= 0.000640512
-average= 0.00057017
-max= 0.000715089
-min= 0.000451064
-average= 0.000710638
-max= 0.000922513
-min= 0.00059402
+average= 0.000623798
+max= 0.000676131
+min= 0.000589919
+average= 0.000570522
+max= 0.00060966
+min= 0.000527143
+average= 0.000638474
+max= 0.000680852
+min= 0.000536275
+average= 0.000646965
+max= 0.000689411
+min= 0.000581598
+average= 0.000593183
+max= 0.000667286
+min= 0.000485682
 
 args: 1000
 
-average= 0.0296997
-max= 0.030318
-min= 0.0291977
-average= 0.032457
-max= 0.0334423
-min= 0.0319827
-average= 0.0322934
-max= 0.0329329
-min= 0.0320778
-average= 0.0296911
-max= 0.0303015
-min= 0.0292333
-average= 0.0296504
-max= 0.0303359
-min= 0.0292515
+average= 0.0296107
+max= 0.0301517
+min= 0.0291766
+average= 0.0325864
+max= 0.0330622
+min= 0.0321723
+average= 0.0326103
+max= 0.033117
+min= 0.032055
+average= 0.0323441
+max= 0.0327871
+min= 0.032042
+average= 0.0320037
+max= 0.0325422
+min= 0.0313579
 number of processes: 25
 
 
 args: 10
 
-average= 0.000429782
-max= 0.000984907
-min= 3.2115e-05
-average= 0.000434272
-max= 0.000899386
-min= 2.53677e-05
-average= 0.000556132
-max= 0.00112939
-min= 3.11613e-05
-average= 0.000505239
-max= 0.00104012
-min= 2.84433e-05
-average= 0.000494369
-max= 0.00101638
-min= 3.22819e-05
+average= 8.07095e-05
+max= 0.000140786
+min= 2.90871e-05
+average= 8.74224e-05
+max= 0.00016222
+min= 2.25067e-05
+average= 6.42834e-05
+max= 0.000121236
+min= 2.02656e-05
+average= 0.000588657
+max= 0.000691652
+min= 0.000384474
+average= 8.80194e-05
+max= 0.000150275
+min= 2.30789e-05
 
 args: 50
 
-average= 0.000558714
-max= 0.00113537
-min= 0.0001683
-average= 0.000578363
-max= 0.00112743
-min= 0.000150895
-average= 0.000611091
-max= 0.00115392
-min= 0.000149751
-average= 0.00142558
-max= 0.0031878
-min= 0.000595164
-average= 0.000578361
-max= 0.00106902
-min= 0.000149131
+average= 0.000176812
+max= 0.000273347
+min= 9.04083e-05
+average= 0.000194892
+max= 0.00025847
+min= 0.000146508
+average= 0.000163947
+max= 0.000260925
+min= 0.00012176
+average= 0.000129616
+max= 0.000191092
+min= 9.05991e-05
+average= 0.000126373
+max= 0.000169539
+min= 9.52959e-05
 
 args: 100
 
-average= 0.000984261
-max= 0.00159216
-min= 0.000516891
-average= 0.000802338
-max= 0.00134237
-min= 0.000347924
-average= 0.000929554
-max= 0.00136039
-min= 0.000541592
-average= 0.00126773
-max= 0.00199013
-min= 0.000459886
-average= 0.000920637
-max= 0.00133638
-min= 0.000509381
+average= 0.000546109
+max= 0.000694776
+min= 0.000430632
+average= 0.000560051
+max= 0.000643539
+min= 0.000436735
+average= 0.000613084
+max= 0.000763178
+min= 0.000436187
+average= 0.00062041
+max= 0.000725675
+min= 0.000448704
+average= 0.000508876
+max= 0.000691748
+min= 0.00039382
 
 args: 1000
 
-average= 0.0450872
-max= 0.0470401
-min= 0.0411977
-average= 0.0444344
-max= 0.0466926
-min= 0.040167
-average= 0.0419114
-max= 0.0437987
-min= 0.0398888
-average= 0.0437798
-max= 0.0459139
-min= 0.0421559
-average= 0.0463217
-max= 0.0493016
-min= 0.043533
+average= 0.0447547
+max= 0.0461612
+min= 0.0429085
+average= 0.0439295
+max= 0.045443
+min= 0.0424856
+average= 0.0406856
+max= 0.04094
+min= 0.0401741
+average= 0.0407195
+max= 0.0419147
+min= 0.0391508
+average= 0.0398692
+max= 0.0411306
+min= 0.0380718
 number of processes: 64
 
 
 args: 10
 
-average= 0.00416941
-max= 0.00605235
-min= 0.00107379
-average= 0.0039674
-max= 0.00637941
-min= 0.00182476
-average= 0.00293471
-max= 0.00498726
-min= 0.000523376
-average= 0.00340403
-max= 0.00546894
-min= 0.000340772
-average= 0.0020494
-max= 0.00453906
-min= 0.000227118
+average= 0.00184229
+max= 0.00270693
+min= 0.000785351
+average= 0.000894314
+max= 0.0012749
+min= 2.81811e-05
+average= 0.000222724
+max= 0.000619984
+min= 3.03268e-05
+average= 0.00265524
+max= 0.00312572
+min= 0.000698543
+average= 0.00127983
+max= 0.0017148
+min= 3.34978e-05
 
 args: 50
 
-average= 0.0033508
-max= 0.00500224
-min= 0.000700855
-average= 0.00422851
-max= 0.00630798
-min= 0.00194941
-average= 0.00432623
-max= 0.0062665
-min= 0.00158808
-average= 0.00689317
-max= 0.00898261
-min= 0.000386214
-average= 0.00444416
-max= 0.00864315
-min= 0.00183008
+average= 0.000659937
+max= 0.00096581
+min= 0.000106835
+average= 0.00291476
+max= 0.003637
+min= 0.000110602
+average= 0.00025322
+max= 0.000542617
+min= 0.000109839
+average= 0.000698406
+max= 0.00103641
+min= 0.000109696
+average= 0.000315204
+max= 0.000701118
+min= 0.000104594
 
 args: 100
 
-average= 0.00463422
-max= 0.00633578
-min= 0.000434303
-average= 0.00304778
-max= 0.00483689
-min= 0.00116477
-average= 0.00334626
-max= 0.00486538
-min= 0.000722432
-average= 0.00380032
-max= 0.00715022
-min= 0.000422668
-average= 0.00327148
-max= 0.00576596
-min= 0.00144098
+average= 0.0011665
+max= 0.00198233
+min= 0.000542283
+average= 0.00162682
+max= 0.00221202
+min= 0.000667429
+average= 0.00247445
+max= 0.00348897
+min= 0.000438118
+average= 0.00203551
+max= 0.00268426
+min= 0.00111735
+average= 0.00106654
+max= 0.00230858
+min= 0.000408483
 
 args: 1000
 
-average= 0.0536581
-max= 0.0585991
-min= 0.0494732
-average= 0.06192
-max= 0.0707577
-min= 0.0513143
-average= 0.0478458
-max= 0.051384
-min= 0.0451528
-average= 0.0477409
-max= 0.0532637
-min= 0.0441875
-average= 0.0469753
-max= 0.0500087
-min= 0.0441774
+average= 0.0459702
+max= 0.0466575
+min= 0.0444689
+average= 0.0463605
+max= 0.0482333
+min= 0.0443634
+average= 0.0540833
+max= 0.0585062
+min= 0.0450759
+average= 0.046645
+max= 0.0477168
+min= 0.044378
+average= 0.0451079
+max= 0.045603
+min= 0.0444069
 
 starting arrayAvg6
 
@@ -455,220 +455,220 @@ number of processes: 9
 
 args: 10
 
-average= 0.000245227
-min= 0.000230312
-max= 0.000262022
-average= 0.000261201
-min= 0.000246048
-max= 0.000272989
-average= 0.000239876
-min= 0.000225306
-max= 0.000258446
-average= 0.000254022
-min= 0.000227928
-max= 0.00026536
-average= 0.000192139
-min= 0.000175953
-max= 0.000211
+average= 0.000197411
+min= 0.000188112
+max= 0.000206947
+average= 0.000201146
+min= 0.000188351
+max= 0.000213623
+average= 0.000258552
+min= 0.000243187
+max= 0.000274897
+average= 0.000243929
+min= 0.000226021
+max= 0.000267029
+average= 0.000209332
+min= 0.000193119
+max= 0.00022316
 
 args: 50
 
-average= 0.00177089
-min= 0.0017159
-max= 0.00181293
-average= 0.00187847
-min= 0.0018611
-max= 0.00190926
-average= 0.00176167
-min= 0.00171304
-max= 0.00179362
-average= 0.00179198
-min= 0.00174212
-max= 0.00182581
-average= 0.00152985
-min= 0.00138712
-max= 0.00167608
+average= 0.00183964
+min= 0.00180602
+max= 0.0018611
+average= 0.0017617
+min= 0.00166869
+max= 0.00180054
+average= 0.00177095
+min= 0.00168204
+max= 0.00184321
+average= 0.00180387
+min= 0.00170398
+max= 0.00186372
+average= 0.00172
+min= 0.00165033
+max= 0.0017755
 
 args: 100
 
-average= 0.00653018
-min= 0.00644588
-max= 0.00659609
-average= 0.00650907
-min= 0.00639415
-max= 0.00663161
-average= 0.00331966
-min= 0.0032618
-max= 0.00337648
-average= 0.00597281
-min= 0.00547004
-max= 0.00652385
-average= 0.00632911
-min= 0.00607467
-max= 0.00653267
+average= 0.00621247
+min= 0.00584722
+max= 0.0064981
+average= 0.006527
+min= 0.00623012
+max= 0.00693488
+average= 0.00637322
+min= 0.00604177
+max= 0.00659919
+average= 0.00648687
+min= 0.00626993
+max= 0.0066638
+average= 0.0064071
+min= 0.00620079
+max= 0.0066371
 
 args: 1000
 
-average= 0.297019
-min= 0.295394
-max= 0.297704
-average= 0.299361
-min= 0.297032
-max= 0.300407
-average= 0.291672
-min= 0.289714
-max= 0.292691
-average= 0.32538
-min= 0.322202
-max= 0.329756
-average= 0.312325
-min= 0.310809
-max= 0.314432
+average= 0.294213
+min= 0.29312
+max= 0.294791
+average= 0.309936
+min= 0.309251
+max= 0.310433
+average= 0.295487
+min= 0.293298
+max= 0.296669
+average= 0.317049
+min= 0.312883
+max= 0.320339
+average= 0.312951
+min= 0.311709
+max= 0.314788
 number of processes: 25
 
 
 args: 10
 
-average= 0.000318785
-min= 0.000288248
-max= 0.000342131
-average= 0.000428238
-min= 0.000371933
-max= 0.00047493
-average= 0.000397615
-min= 0.000353098
-max= 0.000424385
-average= 0.000329037
+average= 0.00033206
+min= 0.000290394
+max= 0.000363827
+average= 0.000303335
+min= 0.000270367
+max= 0.00033927
+average= 0.000316591
+min= 0.000277042
+max= 0.000357866
+average= 0.000388317
 min= 0.000313759
-max= 0.000344992
-average= 0.000415363
-min= 0.000387192
-max= 0.000432253
+max= 0.00043273
+average= 0.000356636
+min= 0.000295162
+max= 0.000386953
 
 args: 50
 
-average= 0.0018433
-min= 0.00163078
-max= 0.00193524
-average= 0.00120738
-min= 0.00115776
-max= 0.00125003
-average= 0.002105
-min= 0.00192404
-max= 0.00226903
-average= 0.00182597
-min= 0.00170016
-max= 0.00199056
-average= 0.00181039
-min= 0.00174403
-max= 0.0018611
+average= 0.00165264
+min= 0.0014441
+max= 0.00181699
+average= 0.00171774
+min= 0.00157785
+max= 0.00188184
+average= 0.00170245
+min= 0.00151873
+max= 0.00188017
+average= 0.0017
+min= 0.00142026
+max= 0.00189686
+average= 0.00157901
+min= 0.00133181
+max= 0.00181556
 
 args: 100
 
-average= 0.00591711
-min= 0.00577283
-max= 0.00606394
-average= 0.00599361
-min= 0.00534534
-max= 0.00656486
-average= 0.00786075
-min= 0.00713015
-max= 0.00847411
-average= 0.00610521
-min= 0.00587726
-max= 0.00625086
-average= 0.00665667
-min= 0.00644279
-max= 0.00679827
+average= 0.00625203
+min= 0.00573468
+max= 0.0066402
+average= 0.00618958
+min= 0.00551391
+max= 0.00661421
+average= 0.00605955
+min= 0.00549102
+max= 0.00665307
+average= 0.00624838
+min= 0.00550699
+max= 0.00677705
+average= 0.00496205
+min= 0.00457215
+max= 0.00539804
 
 args: 1000
 
-average= 0.415856
-min= 0.401788
-max= 0.4309
-average= 0.370201
-min= 0.368414
-max= 0.372144
-average= 0.402756
-min= 0.384811
-max= 0.42265
-average= 0.401358
-min= 0.384637
-max= 0.421766
-average= 0.400293
-min= 0.393354
-max= 0.414785
+average= 0.385926
+min= 0.363184
+max= 0.408792
+average= 0.409226
+min= 0.384277
+max= 0.429741
+average= 0.391903
+min= 0.384477
+max= 0.405041
+average= 0.396993
+min= 0.383534
+max= 0.412734
+average= 0.401469
+min= 0.385841
+max= 0.429232
 number of processes: 64
 
 
 args: 10
 
-average= 0.000419706
-min= 0.000231981
-max= 0.000510693
-average= 0.0112766
-min= 0.000213146
-max= 0.0160179
-average= 0.000374619
-min= 0.000211954
-max= 0.000566483
-average= 0.0107766
-min= 0.000183105
-max= 0.0121727
-average= 0.000407867
-min= 0.000188351
-max= 0.000539303
+average= 0.000404976
+min= 0.000208378
+max= 0.000530958
+average= 0.000430889
+min= 0.000226974
+max= 0.000622272
+average= 0.000421796
+min= 0.000218391
+max= 0.000663757
+average= 0.00028744
+min= 0.000224113
+max= 0.000339985
+average= 0.000424206
+min= 0.000250101
+max= 0.000582457
 
 args: 50
 
-average= 0.00136251
-min= 0.00126338
-max= 0.00142717
-average= 0.0136925
-min= 0.00127602
-max= 0.0168099
-average= 0.00135789
-min= 0.00129104
-max= 0.00142312
-average= 0.00140276
-min= 0.0013299
-max= 0.00146532
-average= 0.00136993
-min= 0.00129914
-max= 0.0014286
+average= 0.0013024
+min= 0.00117612
+max= 0.00136089
+average= 0.00135008
+min= 0.00123048
+max= 0.00145507
+average= 0.0013234
+min= 0.00125575
+max= 0.00142932
+average= 0.0013965
+min= 0.00132728
+max= 0.00144958
+average= 0.00127714
+min= 0.0011723
+max= 0.00134468
 
 args: 100
 
-average= 0.0104156
-min= 0.00469995
-max= 0.0124431
-average= 0.0160418
-min= 0.00456929
-max= 0.0165818
-average= 0.0292103
-min= 0.00455737
-max= 0.07283
-average= 0.0110064
-min= 0.00449371
-max= 0.0124311
-average= 0.00477865
-min= 0.00469327
-max= 0.00483871
+average= 0.00485027
+min= 0.00460196
+max= 0.00503802
+average= 0.00492262
+min= 0.00468302
+max= 0.00504875
+average= 0.00477643
+min= 0.00465894
+max= 0.00481844
+average= 0.00679401
+min= 0.00547647
+max= 0.00829244
+average= 0.00488121
+min= 0.00468755
+max= 0.00499296
 
 args: 1000
 
-average= 0.456016
-min= 0.448491
-max= 0.459959
-average= 0.476197
-min= 0.461369
-max= 0.481263
-average= 0.447687
-min= 0.446175
-max= 0.453694
-average= 0.447517
-min= 0.446863
-max= 0.448018
-average= 0.448813
-min= 0.447184
-max= 0.449716
+average= 0.446964
+min= 0.44636
+max= 0.447369
+average= 0.470602
+min= 0.44595
+max= 0.528004
+average= 0.447148
+min= 0.446458
+max= 0.447726
+average= 0.447362
+min= 0.446892
+max= 0.447876
+average= 0.453703
+min= 0.446647
+max= 0.461787
