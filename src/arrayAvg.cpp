@@ -15,6 +15,7 @@
 #include "HaloSplit.hpp"
 #include "HaloNeighbor.hpp"
 #include "HaloMerged.hpp"
+#include "HaloNeighbor_nb.hpp"
 #include <vector>
 
 void initialize_matrix(matrix<double>& A);
@@ -47,28 +48,40 @@ int main(int argc, char* argv[])
 	MPI_Comm_size(MPI_COMM_WORLD, &size);
 	MPI_Comm_rank(MPI_COMM_WORLD, &rank);
 
+	matrix<double> a;
+	matrix<double> b;
+
+	a.assign(lnx, lny);
+	b.assign(lnx, lny);
+
 	//this is highly dependent on the size of the matrix and the number of processses.
 	//I could write this to be more generic but for the purposes of this experiment I'm leaving it like this
 	//TODO: introduce better error checking
 	std::string arg1(argv[1]);
+	initialize_matrix(a);
+	Halo * setupHalo;
 	if(argc > 1)
 	{
 		if(arg1 == "-m")
 		{
-			HaloMerged setupHalo(a, rank, size, lnx, lny);
+			setupHalo = new HaloMerged(rank, size, lnx, lny);
 		}
 		else if(arg1 == "-s")
 		{
-			HaloSplit setupHalo(a, rank, size, lnx, lny);
+			setupHalo = new HaloSplit(rank, size, lnx, lny);
 		}
-		else if(arg1 == "-n")
+		else if(arg1 == "-b") //b for blocking neighbor
 		{
-			HaloNeighbor setupHalo(a, rank, size, lnx, lny);
+			setupHalo = new HaloNeighbor(rank, size, lnx, lny);
+		}
+		else if(arg1 == "-n") //n for nonblocking neighbor
+		{
+			setupHalo = new HaloNeighbor_nb(rank, size, lnx, lny);
 		}
 		else
 		{
-			std::cout << "Usage: mpirun -np NUM_PROCESSES -HALOTYPE [x] [y]\n";
-			return -1; //TODO: why return -1?
+			std::cout << "Usage: mpirun -np [NUM_PROCESSES] -[HALOTYPE] [x] [y]\n";
+			return -1; //no specified reason to return specific number
 		}
 		for(int i = 2; i<argc; i++)
 		{
@@ -79,31 +92,28 @@ int main(int argc, char* argv[])
 			}
 			else
 			{
-				std::cout << "Usage: mpirun -np NUM_PROCESSES -HALOTYPE [x] [y]\n";
-				return -1;
+				std::cout << "Usage: mpirun -np [NUM_PROCESSES] -[HALOTYPE] [x] [y]\n";
+				return -2;
 			}
 		}
 	}
 	else
 	{
 		//error message
+		std::cerr << "Not enough arguments.\n Usage: mpirun -np [NUM_PROCESSES] -[HALOTYPE] [x] [y]\n";
+		return -2;
 	}
 
 	//matrices to hold values
-	matrix<double> a;
-	matrix<double> b;
-
-	a.assign(lnx, lny);
-	b.assign(lnx, lny);
-
+	
 	initialize_matrix(a);
 
-	//initialize Halo
 	matrix<double>* src;
 	matrix<double>* dst;
 
 	for(int i=0; i<10; i++)
 	{
+		//data from src is averaged and loaded into dst then next iteration the arrays are switched.
 		if(i%2==0)
 		{
 			*src = a;

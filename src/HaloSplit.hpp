@@ -22,12 +22,11 @@ class HaloSplit : public Halo
 		int neighbors[4];
 		int sendLength[4];
 		int recvLength[4];
-		int totalSend;
-		int totalRecv;
+		int totalSent, totalRecv, recvIndex;
 		MPI_Request* requests;
 		MPI_Status *status;
 	public:
-		HaloSplit(matrix<double>& nA, int r, int np, int nx, int ny);
+		HaloSplit(int r, int np, int nx, int ny);
 		~HaloSplit() {};
 
 		bool Halo_Init(matrix<double>& A);

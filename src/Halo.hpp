@@ -26,8 +26,8 @@ class Halo
 		//long int * elementsToSend; //holds the indices of the elements to be sent
 		//NOTE: only holds coordinates that change. (i,0), (i,n-1), (0,i), (n-1, i)
 		//long int * elementsToRecv; //NOTE: only holds coordinates that change. (i,0), (i,n-1), (0,i), (n-1, i)
-		int local_rows = npx-2;
-		int local_cols = npy-2;
+		int local_rows;
+		int local_cols;
 		//merged version requires this
 		//int neighbors[4]; //preinitialized to 4 elements TODO: make it dynamically allocated
 		int sendLength[4];
@@ -64,8 +64,9 @@ class Halo
 
 		virtual ~Halo() {}; //virtual destructor required for base class
 
-		virtual bool Halo_Init(matrix<double>& A) =0;
-		virtual bool Halo_Finalize() =0;
+		//should be purely virtual but there's an isssue somewhere
+		virtual bool Halo_Init(matrix<double>& A) { return true;};
+		virtual void Halo_Finalize() {};
 };
 #endif
 

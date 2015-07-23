@@ -3,35 +3,15 @@
 #include<cmath>
 #include<iostream>
 
-HaloNeighbor_nb::HaloNeighbor_nb(matrix<long int>& A, int r, int np, int nx, int ny)
+HaloNeighbor_nb::HaloNeighbor_nb(int r, int np, int nx, int ny)
 {
-		//calculate the rank of the processor in the processor grid 
+	//calculate the rank of the processor in the processor grid 
 	//assume square grid for now
 
 	//calculate the ranks of the neighbors
 	//TODO: Rewrite this mor
 	totalSend = local_rows*4;
-	totalRecv = 0; //REDUNDANT see numNeighbors for function
-
-	elementsToSend = new long int[totalSend];
-	elementsToRecv = new long int[totalSend];
-
-	//calculate the elements to send	
-	//NOTE: Even though this isn't generic this loop will stll hold up if x and y are different dimensions
-
-	//If statements to check on 
-	//pull all the elements that are to be sent into one array
-	sdisp[0] = sendLength[0];
-	rdisp[0] = recvLength[0];
-	//set up arrays that hold displacement info
-	for(int i=1; i < totalRecv; i++)
-	{
-		sdisp[i]=sendLength[i]+sdisp[i-1];
-		rdisp[i]=sendLength[i]+rdisp[i-1];
-	}
-
-	//std::cout << "calculated elements to Send\n";
-	//TODO: move these somewhere more relevant
+	totalRecv = 4;
 
 	//TODO:move these to the header file
 	ndim[0] = npy;
@@ -48,97 +28,21 @@ HaloNeighbor_nb::HaloNeighbor_nb(matrix<long int>& A, int r, int np, int nx, int
 	int coord[2];
 	MPI_Cart_coords(cart, rank, 2, coord);
 }
-//
-//
-// Halo Exchange
-//
-//
 
-void HaloNeighbor_nb::Halo_Init(matrix<long int>& A)
+bool HaloNeighbor_nb::Halo_Init(matrix<double>& A)
 {
-		int sendIndex = 0;
-
-		for(int i=1; i<nix-1; i++, sendIndex++)
-		{
-			elementsToSend[sendIndex] = A[i][1];
-		}			
-		sendLength[totalRecv]=local_rows;
-		recvLength[totalRecv]=local_rows;
-		totalRecv++;
-
-		for(int i=1; i<niy-1; i++, sendIndex++)
-		{
-			elementsToSend[sendIndex] = A[i][local_rows];
-		}
-		sendLength[totalRecv]=local_rows;
-		recvLength[totalRecv]=local_rows;
-		totalRecv++;
-
-		for(int i=1; i<nix-1; i++, sendIndex++)
-		{
-			//send buffer
-			elementsToSend[sendIndex] = A[1][i];
-		}		
-		//totalSend scales with number of processes
-		sendLength[totalRecv]=local_cols;
-		recvLength[totalRecv]=local_cols;
-		totalRecv++;
-
-		for(int i=1; i<niy-1; i++, sendIndex++)
-		{
-			elementsToSend[sendIndex] = A[local_rows][i];
-		}
-		sendLength[totalRecv]=local_cols;
-		recvLength[totalRecv]=local_cols;
-		totalRecv++;
-
-	//post Irecv	
-
-	//TODO: replace totalRecv with numNeighbors
-	requests = new MPI_Request[totalRecv];
-	status = new MPI_Status[totalRecv];
-	MPI_Neighbor_alltoall(elementsToSend, sendLength[0], MPI_LONG, elementsToRecv, recvLength[0], MPI_LONG, cart); 
-	}
-
-HaloNeighbor::Halo_Finalize()
-{
-	MPI_Waitall(totalRecv, requests, status);
-	int recvIndex = 0;
-		for(int i=1; i<nix-1; i++, recvIndex++)
-		{
-			//send buffer
-			A[0][i] = elementsToRecv[recvIndex];
-			//A[0][i] = 96;
-		}		
-		//totalSend scales with number of processes
-
-		for(int i=1; i<nix-1; i++, recvIndex++)
-		{
-			A[i][0] = elementsToRecv[recvIndex];
-			//A[i][0] = 69;
-		}			
-
-		for(int i=1; i<niy-1; i++, recvIndex++)
-		{
-			A[local_rows+1][i] = elementsToRecv[recvIndex];
-			//A[local_rows+1][i] = 42;
-		}
-
-		for(int i=1; i<niy-1; i++, recvIndex++)
-		{
-			A[i][local_cols+1] = elementsToRecv[recvIndex];
-			//A[i][local_rows+1] = 21;
-		}
-
-	delete [] status;
-	delete [] requests;
+	//because local array is a square only one dimension is needed
+		//NOTE:getEdgeArray and getExternalArray are not implemented and are purely conceptual
+	//for local arrays that are not square use MPI_Neighbor_Ialltoallv
+	MPI_Neighbor_Ialltoall(A.getEdgeArray(), local_cols, MPI_DOUBLE, A.getExternalArray(), local_cols, MPI_LONG, cart, &request); 
+	return true;
 }
 
-Halo::~Halo()
+void HaloNeighbor::Halo_Finalize()
 {
-	delete [] elementsToSend;
-	delete [] elementsToRecv;
+	MPI_Waitall(1, &request, &status);
 }
+
 
 /*void Halo::assignArr(matrix<long int>& nA)
 	{

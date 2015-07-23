@@ -5,10 +5,19 @@
 
 class HaloNeighbor_nb : public Halo
 {
-	HaloNeighbor_nb(matrix<double>& nA, int r, int np, int nx, int ny);
-	~HaloNeighbor_nb();
+	private:
+		MPI_Comm cart;
+		MPI_Request request;
+		MPI_Status status;
 
-	bool Halo_Init(matrix<double>& A);
-	bool Halo_Finalize();
+		int ndim[2];
+		int period[2];
+
+	public:
+		HaloNeighbor_nb(int r, int np, int nx, int ny);
+		~HaloNeighbor_nb() {};
+
+		bool Halo_Init(matrix<double>& A);
+		void Halo_Finalize();
 };
 #endif

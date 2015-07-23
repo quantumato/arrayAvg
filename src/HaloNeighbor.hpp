@@ -7,14 +7,16 @@
 class HaloNeighbor : public Halo
 {
 	private:
-		double * elementsToSend;
-		double * elementsToRecv;
+		//change size for different number of dimensions
+		int ndim[2];
+		int period[2];
+		MPI_Comm cart;
 	public:
-		HaloNeighbor(matrix<double> A, int r, int np, int nx, int ny);
-		~HaloNeighbor();
+		HaloNeighbor(int r, int np, int nx, int ny);
+		~HaloNeighbor() {};
 
 		bool Halo_Init(matrix<double>& A);
-		bool HalO_Finalize();
+		void HalO_Finalize();
 };
 
 #endif
