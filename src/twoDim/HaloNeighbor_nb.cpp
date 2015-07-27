@@ -38,7 +38,7 @@ bool HaloNeighbor_nb::Halo_Init(matrix<double>& A)
 	return true;
 }
 
-void HaloNeighbor::Halo_Finalize()
+void HaloNeighbor_nb::Halo_Finalize()
 {
 	MPI_Waitall(1, &request, &status);
 }
