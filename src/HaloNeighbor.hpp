@@ -11,6 +11,8 @@ class HaloNeighbor : public Halo
 		int ndim[2];
 		int period[2];
 		MPI_Comm cart;
+		MPI_Request request;
+		MPI_Status status;
 	public:
 		HaloNeighbor(int r, int np, int nx, int ny);
 		~HaloNeighbor() {};

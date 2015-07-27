@@ -43,8 +43,3 @@ void HaloNeighbor::Halo_Finalize()
 	MPI_Waitall(1, &request, &status);
 }
 
-
-/*void Halo::assignArr(matrix<long int>& nA)
-	{
-	A = na;
-	}*/

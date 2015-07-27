@@ -12,6 +12,7 @@ class HaloMerged : public Halo
 	int neighbors[4]; //max 4 neighbors
 
 		MPI_Request* requests;
+		MPI_Status* status;
 	public:
 		HaloMerged(int r, int np, int nx, int ny);
 		~HaloMerged() {};

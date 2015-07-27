@@ -7,8 +7,8 @@ class HaloNeighbor_nb : public Halo
 {
 	private:
 		MPI_Comm cart;
-		MPI_Request request;
-		MPI_Status status;
+		MPI_Request* request;
+		MPI_Status* status;
 
 		int ndim[2];
 		int period[2];

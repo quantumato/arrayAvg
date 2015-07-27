@@ -32,7 +32,6 @@ class matrix
 		{
 			//follows order of MPI Neighborhood collectives for consistency
 			//NOTE: left and right edges are not continuous segments of memory
-			Tbuf * x;
 			switch (e)
 			{
 				case 1: //left edge
@@ -53,7 +52,6 @@ class matrix
 		//external values to be received
 		Tbuf * getExternal(int h)
 		{
-			Tbuf * x;
 			switch (h)
 			{
 				case 1: //left edge
