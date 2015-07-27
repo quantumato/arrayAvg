@@ -42,7 +42,7 @@ bool HaloNeighbor::Halo_Init(matrix<double>& A)
 {
 	//NOTE: getEdgeArray and getExternalArray are not implemented and are purely conceptual
 	//for a local array that is not square use MPI_Neighbor_alltoallv
-	MPI_Neighbor_alltoall(A.getEdgeArray(), local_cols, MPI_LONG, A.getExternalArray(), local_cols, MPI_LONG, cart); 
+	MPI_Neighbor_alltoall(A.getEdgeArray(), local_cols, MPI_DOUBLE, A.getExternalArray(), local_cols, MPI_LONG, cart); 
 	return false;
 }
 

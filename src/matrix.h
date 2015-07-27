@@ -41,7 +41,7 @@ class matrix
 				case 3: //top edge
 					return buf+1;
 				case 4: //bottom edge
-					x = buf+(Ncols*Nrows-Ncols+1);
+					return buf+(Ncols*Nrows-Ncols+1);
 				default:
 					std::cout << "invalid argument. Arg must be <= 4 or >= 1.\n";
 					//should throw exception but I dont' know how to handle that.

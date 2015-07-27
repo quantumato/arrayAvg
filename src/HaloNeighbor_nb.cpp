@@ -34,7 +34,7 @@ bool HaloNeighbor_nb::Halo_Init(matrix<double>& A)
 	//because local array is a square only one dimension is needed
 		//NOTE:getEdgeArray and getExternalArray are not implemented and are purely conceptual
 	//for local arrays that are not square use MPI_Neighbor_Ialltoallv
-	MPI_Neighbor_Ialltoall(A.getEdgeArray(), local_cols, MPI_DOUBLE, A.getExternalArray(), local_cols, MPI_LONG, cart, &request); 
+	MPI_Neighbor_Ialltoall(A.getEdgeArray(), local_cols, MPI_DOUBLE, A.getExternalArray(), local_cols, MPI_DOUBLE, cart, &request); 
 	return true;
 }
 

@@ -15,10 +15,7 @@
 class HaloSplit : public Halo
 {
 	private:
-		//matrix<long int>& A; //may take up too much memory could just call by reference
-		//long int * elementsToSend; //holds the indices of the elements to be sent
-													//NOTE: only holds coordinates that change. (i,0), (i,n-1), (0,i), (n-1, i)
-		//long int * elementsToRecv; //NOTE: only holds coordinates that change. (i,0), (i,n-1), (0,i), (n-1, i)
+		int numNeighbors;
 		int neighbors[4];
 		int sendLength[4];
 		int recvLength[4];
@@ -31,7 +28,6 @@ class HaloSplit : public Halo
 
 		bool Halo_Init(matrix<double>& A);
 		void Halo_Finalize(matrix<double>& A);
-		//void assignArr(matrix<long int>& nA);
 };
 #endif
 

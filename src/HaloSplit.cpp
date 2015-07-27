@@ -65,19 +65,19 @@ bool HaloSplit::Halo_Init(matrix<double>& A)
 		int n_recv = recvLength[i];
 		//made up some syntax to deal with edges. getEdge is implemented for conceptual purposes
 		//and will not actually work
-		MPI_Irecv(A.getEdge(i), n_recv, MPI_LONG, neighbors[i], tag, MPI_COMM_WORLD, requests+i); 
+		MPI_Irecv(A.getEdge(i), n_recv, MPI_DOUBLE, neighbors[i], tag, MPI_COMM_WORLD, requests+i); 
 	}
 	//Sends
 	for(int i=0; i<numNeighbors; i++)
 	{
 		int n_send = sendLength[i];
-		MPI_Isend(A.getExternals(i), n_send, MPI_LONG, neighbors[i], tag, MPI_COMM_WORLD, requests+i+numNeighbors);
+		MPI_Isend(A.getExternals(i), n_send, MPI_DOUBLE, neighbors[i], tag, MPI_COMM_WORLD, requests+i+numNeighbors);
 	}
 	return true;
 }
 
 //separate wait function
-void HaloSplit::Halo_Finalize(matrix<long int>& A)
+void HaloSplit::Halo_Finalize(matrix<double int>& A)
 {
 	MPI_Waitall(numNeighbors, requests, status);
 	delete [] status;

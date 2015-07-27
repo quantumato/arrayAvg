@@ -22,23 +22,13 @@ class Halo
 		int npx, npy; //number of processors in x and y directions
 		int nix, niy; //number of elements in x and y directions
 		int tag;
-		//neighbor version needs this
-		//long int * elementsToSend; //holds the indices of the elements to be sent
-		//NOTE: only holds coordinates that change. (i,0), (i,n-1), (0,i), (n-1, i)
-		//long int * elementsToRecv; //NOTE: only holds coordinates that change. (i,0), (i,n-1), (0,i), (n-1, i)
+
 		int local_rows;
 		int local_cols;
-		//merged version requires this
-		//int neighbors[4]; //preinitialized to 4 elements TODO: make it dynamically allocated
 		int sendLength[4];
 		int recvLength[4];
-		//merged version requires this
-		//int numNeighbors; //number of neighbors
 		int totalSend;
 		int totalRecv;
-		//merged version requires these two
-		//MPI_Request* requests;
-		//MPI_Status *status;
 	public:
 		//consolidate initiliazation of common member data
 		Halo(int r, int np, int nx, int ny)
@@ -65,8 +55,8 @@ class Halo
 		virtual ~Halo() {}; //virtual destructor required for base class
 
 		//should be purely virtual but there's an isssue somewhere
-		virtual bool Halo_Init(matrix<double>& A) { return true;};
-		virtual void Halo_Finalize() {};
+		virtual bool Halo_Init(matrix<double>& A) =0;
+		virtual void Halo_Finalize() =0;
 };
 #endif
 
